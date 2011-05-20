@@ -1,36 +1,49 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>org.kuali</groupId>
-    <artifactId>kuali</artifactId>
-    <version>73</version>
-  </parent>
   <groupId>org.kuali.db.ojb</groupId>
   <artifactId>db-ojb</artifactId>
   <version>1.0.4-patch7-SNAPSHOT</version>
+  <packaging>jar</packaging>
   <name>ObJectRelationalBridge</name>
   <description>
     ObJectRelationalBridge (OJB) is an Object/Relational mapping tool that
     allows transparent persistence for Java Objects against relational
     databases.
   </description>
-  <repositories>
-    <repository>
-      <id>kuali.nexus</id>
-      <name>Kuali Nexus Repository Manager</name>
-      <url>http://nexus.kuali.org/content/groups/public</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-    </repository>
-  </repositories>
+  
+	<repositories>
+		<repository>
+			<id>kuali</id>
+			<name>Kuali Repository</name>
+			<url>https://test.kuali.org/maven</url>
+		</repository>
+        <repository>
+          <id>cornell-internal</id>
+          <url>https://maven.cit.cornell.edu/repository/internal</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </repository>
+        <repository>
+          <id>cornell-snapshots</id>
+          <url>https://maven.cit.cornell.edu/repository/snapshots</url>
+          <releases>
+            <enabled>false</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
+          </snapshots>
+        </repository>
+	</repositories>
+	
   <scm>
-    <connection>scm:svn:https://test.kuali.org/svn/kul-ojb-1.0.4/trunk</connection>
-    <developerConnection>scm:svn:https://test.kuali.org/svn/kul-ojb-1.0.4/trunk</developerConnection>
-    <url>https://test.kuali.org/svn/kul-ojb-1.0.4/trunk</url>
+    <connection>scm:svn:https://forge.cornell.edu/svn/repos/cynergy/db-ojb/trunk</connection>
+    <developerConnection>scm:svn:https://forge.cornell.edu/svn/repos/cynergy/db-ojb/trunk</developerConnection>
+    <url>https://forge.cornell.edu/svn/repos/cynergy/db-ojb/trunk</url>
   </scm>
   <properties>
     <!-- Remove this property as soon as the devs are comfortable with Maven 3 -->
@@ -44,26 +57,6 @@
     <maven.test.skip>true</maven.test.skip>
   </properties>
   <dependencies>
-
-    <!--
-    <dependency>
-      <groupId>jdo</groupId>
-      <artifactId>jdo</artifactId>
-      <version>1.0.1</version>
-    </dependency>
-    <dependency>
-      <groupId>jdo</groupId>
-      <artifactId>jdori</artifactId>
-      <version>1.0.1</version>
-    </dependency>
-    <dependency>
-      <groupId>jcs</groupId>
-      <artifactId>jcs</artifactId>
-      <version>1.0-dev</version>
-      <optional>true</optional>
-    </dependency>
-     -->
-
 
     <dependency>
       <groupId>ant</groupId>
@@ -219,16 +212,15 @@
   </dependencies>
   
   <distributionManagement>
-	  <repository>
-	    <id>cornell-internal</id>
-	    <url>dav:https://maven.cit.cornell.edu/repository/internal/</url>
-	  </repository>
-	  <snapshotRepository>
-	    <id>cornell-snapshots</id>
-	    <name>cornell-snapshots</name>
-	    <uniqueVersion>false</uniqueVersion>
-	    <url>https://maven.cit.cornell.edu/repository/snapshots/</url>
-	  </snapshotRepository>
+    <repository>
+      <id>cornell-internal</id>
+      <url>dav:https://maven.cit.cornell.edu/repository/internal/</url>
+    </repository>
+    <snapshotRepository>
+      <id>cornell-snapshots</id>
+      <uniqueVersion>false</uniqueVersion>
+      <url>dav:https://maven.cit.cornell.edu/repository/snapshots/</url>
+    </snapshotRepository>
   </distributionManagement>
   
   <build>
