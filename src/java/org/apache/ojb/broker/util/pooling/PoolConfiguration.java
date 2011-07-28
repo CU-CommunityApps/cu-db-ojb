@@ -59,14 +59,14 @@ public class PoolConfiguration extends Properties implements Serializable, Attri
     //*****************************************************
     // used default values
     //*****************************************************
-    public static final int DEFAULT_MAX_ACTIVE = 21;
+    public static final int DEFAULT_MAX_ACTIVE = 0;
     public static final int DEFAULT_MAX_IDLE = -1;
     public static final int DEFAULT_MIN_IDLE = 0;
     public static final long DEFAULT_MAX_WAIT = 5000;
-    public static final byte DEFAULT_WHEN_EXHAUSTED_ACTION = GenericObjectPool.WHEN_EXHAUSTED_FAIL;
+    public static final byte DEFAULT_WHEN_EXHAUSTED_ACTION = GenericObjectPool.WHEN_EXHAUSTED_GROW;
     public static final boolean DEFAULT_TEST_ON_BORROW = true;
-    public static final boolean DEFAULT_TEST_ON_RETURN = false;
-    public static final boolean DEFAULT_TEST_WHILE_IDLE = false;
+    public static final boolean DEFAULT_TEST_ON_RETURN = true;
+    public static final boolean DEFAULT_TEST_WHILE_IDLE = true;
     public static final long DEFAULT_TIME_BETWEEN_EVICTION_RUNS_MILLIS = -1L;
     public static final int DEFAULT_NUM_TESTS_PER_EVICTION_RUN = 10;
     public static final long DEFAULT_MIN_EVICTABLE_IDLE_TIME_MILLIS = 1000 * 60 * 10;
@@ -216,7 +216,8 @@ public class PoolConfiguration extends Properties implements Serializable, Attri
 
     public void setMaxActive(int maxActive)
     {
-        this.setProperty(MAX_ACTIVE, Integer.toString(maxActive));
+    	//Max Active always set to 0 so we can grow the pool instead of failing
+        this.setProperty(MAX_ACTIVE, Integer.toString(0));
     }
 
     public int getMaxIdle()
@@ -257,7 +258,8 @@ public class PoolConfiguration extends Properties implements Serializable, Attri
 
     public void setWhenExhaustedAction(byte whenExhaustedAction)
     {
-        this.setProperty(WHEN_EXHAUSTED_ACTION, Byte.toString(whenExhaustedAction));
+    	//Always set this to grow
+        this.setProperty(WHEN_EXHAUSTED_ACTION, Byte.toString(GenericObjectPool.WHEN_EXHAUSTED_GROW));
     }
 
 

@@ -84,7 +84,9 @@ public class PersistenceBrokerFactoryDefaultImpl extends PersistenceBrokerFactor
      */
     public PersistenceBrokerInternal createPersistenceBroker(PBKey pbKey) throws PBFactoryException
     {
-        if (log.isDebugEnabled()) log.debug("Obtain broker from pool, used PBKey is " + pbKey);
+        if (log.isDebugEnabled()) log.debug("Obtain broker from pool, used PBKey is " + pbKey 
+        		+ " Max Active: " + brokerPool.getMaxActive()
+        		+ " Active: " + brokerPool.getNumActive());
         PersistenceBrokerInternal broker = null;
 
         /*
